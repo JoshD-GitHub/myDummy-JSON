@@ -43,45 +43,17 @@ const render = (productArray) => {
     });
 };
 
-/*
-const renderSingleProduct = (singleProductArray) => {
-    singleProductArray.map((item) => {
-        // const img = `<img src='${item.thumbnail}' />`;
-        const img = document.createElement('img');
-        img.src = item.thumbnail;
-
-        const ul = document.createElement('ul');
-
-        const li = `
-        <li>${item.brand}</li>
-        <li>${item.category}</li>
-        <li>${item.description}</li>
-        <li>${item.discountPercentage}</li>
-        <li>${item.price}</li>
-        <li>${item.rating}</li>
-        <li>${item.stock}</li>
-        `;
-
-        ul.appendChild(li);
-
-    });
-};
-*/
-
 const infoListener = async(event) => {
     const productID = event.target.dataset.id;
     const response = await fetch (`${API}/${productID}`);
     const singleProduct = await response.json();
-    console.log('singleProduct', singleProduct)
-    console.log(event.target.parentNode.parentNode)
     const buttonSection = event.target.parentNode.parentNode
 
     const img = document.createElement('img');
     img.src = singleProduct.thumbnail;
 
     const ul = document.createElement('ul');
-    // const li = document.createElement('li');
-   ul.innerHTML = `
+    ul.innerHTML = `
     <li><strong>Name: </strong>${singleProduct.brand}</li>
     <li><strong>Category: </strong>${singleProduct.category}</li>
     <li><strong>Description: </strong>${singleProduct.description}</li>
@@ -93,7 +65,6 @@ const infoListener = async(event) => {
 
     buttonSection.appendChild(img);
     buttonSection.appendChild(ul);
-    // ul.appendChild(li);
 
 
     //ADD CLOSE BUTTON
